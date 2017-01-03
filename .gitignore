@@ -1,0 +1,14 @@
+# exe ファイルは要らない
+*.exe
+
+# obj ファイルは要らない
+*.obj
+
+# pdb ファイルは要らない
+*.pdb
+
+# ilk ファイルは要らない
+*.ilk
+
+# vsvars32.bat は要らない
+vsvars32.bat
