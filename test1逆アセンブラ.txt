@@ -1,0 +1,19 @@
+0:000:x86> uf test1!main
+test1!main [c:\users\danki\desktop\cui-sample\test1.c @ 3]:
+    3 00d31010 55              push    ebp                            //ベースポインタを保存する
+    3 00d31011 8bec            mov     ebp,esp                        //スタックポインタの値をベースポインタへへ
+    3 00d31013 83ec0c          sub     esp,0Ch                        //スタックポインタから 0Ch 引く。(12byte確保)
+    7 00d31016 c745fc01000000  mov     dword ptr [ebp-4],1            //一つ目の変数に 1 を代入
+    8 00d3101d c745f402000000  mov     dword ptr [ebp-0Ch],2          //二つ目の変数に 2 を代入
+    9 00d31024 8b45fc          mov     eax,dword ptr [ebp-4]          //eax に一つ目の変数に代入した 1 を代入
+    9 00d31027 0345f4          add     eax,dword ptr [ebp-0Ch]        //eax に二つ目の変数 2 を加える
+    9 00d3102a 8945f8          mov     dword ptr [ebp-8],eax          //三つ目の変数に eax を代入
+   10 00d3102d 8b4df8          mov     ecx,dword ptr [ebp-8]          //ecx に三つ目の変数の値を代入
+   10 00d31030 51              push    ecx                            //ecx を保存
+   10 00d31031 6800c0d400      push    offset test1!__rtc_tzz <PERF> (test1+0x1c000) (00d4c000)
+   10 00d31036 e816000000      call    test1!printf (00d31051)        //printf 関数呼び出し
+   10 00d3103b 83c408          add     esp,8                          //スタックポインタに 8 を加える(printf 関数のために Push した分消す)
+   13 00d3103e 33c0            xor     eax,eax                        //eax に 0 を代入すると同等
+   13 00d31040 8be5            mov     esp,ebp
+   13 00d31042 5d              pop     ebp
+   13 00d31043 c3              ret
